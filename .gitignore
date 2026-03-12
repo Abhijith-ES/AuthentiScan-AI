@@ -1,0 +1,10 @@
+# Virtual Environment and Environment Variables
+.env
+venv
+
+# Pycache
+**/__pycache__/
+*.py[cod]
+
+# Document Uploads
+backend/uploads
