@@ -1,124 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>AuthentiScan AI</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuthentiScan AI</title>
 
-<link rel="stylesheet" href="styles.css">
-
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
-<link rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    >
 </head>
-
 <body>
+    <div class="page-shell">
+        <header class="hero">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-fingerprint"></i>
+                </div>
+                <div>
+                    <h1>AuthentiScan AI</h1>
+                    <p class="tagline">AI-Powered Identity Document Forgery Detection</p>
+                </div>
+            </div>
 
-<main>
+            <p class="subtext">
+                Upload an identity document and get a compact forensic analysis dashboard
+                with tampering evidence, risk assessment, OCR insights and a structured fraud report.
+            </p>
+        </header>
 
-<header class="hero">
-<h1>AuthentiScan AI</h1>
+        <main class="dashboard">
+            <section class="panel upload-panel">
+                <div class="panel-header">
+                    <h2>Document Upload & Analysis</h2>
+                    <p>Select a document and run the fraud detection pipeline.</p>
+                </div>
 
-<p class="tagline">
-AI-Powered Identity Document Forgery Detection
-</p>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" hidden accept="image/*">
 
-<p class="subtext">
-Upload an identity document and instantly analyze tampering,
-forensic signals and authenticity risk using AI-driven analysis.
-</p>
-</header>
+                    <div class="upload-icon-wrap">
+                        <i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                    </div>
 
+                    <p class="upload-main">Drag & Drop your document</p>
+                    <p class="upload-sub">or click to browse</p>
+                    <p id="fileName" class="file-name">No file selected</p>
+                </div>
 
-<section class="upload-card">
+                <button id="analyzeBtn" class="primary-btn" onclick="analyzeDocument()">
+                    Analyze Document
+                </button>
 
-<h3>Upload Identity Document</h3>
+                <div id="loading" class="loading hidden">
+                    <div class="loader"></div>
+                    <div class="loading-steps">
+                        <p>Running forensic analysis...</p>
+                        <span>Image validation • Tampering detection • OCR • Risk scoring</span>
+                    </div>
+                </div>
+            </section>
 
-<div class="upload-area" id="uploadArea">
+            <section class="panel report-panel">
+                <div class="panel-header">
+                    <h2>Detailed Report</h2>
+                    <p>Structured explanation of the fraud analysis result.</p>
+                </div>
 
-<i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+                <div id="reportPlaceholder" class="placeholder-card">
+                    <i class="fa-regular fa-file-lines"></i>
+                    <p>Your fraud analysis report will appear here after scanning.</p>
+                </div>
 
-<p class="upload-main">Drag & Drop your document</p>
+                <div id="reportContent" class="report-content hidden">
+                    <div id="fraudSignals" class="signal-box"></div>
+                    <div id="fraudReport" class="report-markdown"></div>
+                </div>
+            </section>
 
-<p class="upload-sub">or click to browse</p>
+            <section class="panel results-panel">
+                <div class="panel-header">
+                    <h2>At-a-Glance Results</h2>
+                    <p>Evidence images, risk status and OCR-based document insights.</p>
+                </div>
 
-<input type="file" id="fileInput" hidden>
+                <div id="resultsPlaceholder" class="placeholder-card">
+                    <i class="fa-solid fa-shield-halved"></i>
+                    <p>Dashboard results will appear here after analysis.</p>
+                </div>
 
-<p id="fileName"></p>
+                <div id="resultsContent" class="results-content hidden">
+                    <div class="mini-images">
+                        <div class="mini-image-card">
+                            <label>Original Document</label>
+                            <img id="originalImage" alt="Original document preview">
+                        </div>
 
-</div>
+                        <div class="mini-image-card">
+                            <label>ELA Forensic View</label>
+                            <img id="elaImage" alt="ELA forensic preview">
+                        </div>
+                    </div>
 
-<button onclick="analyzeDocument()" id="analyzeBtn">
-Analyze Document
-</button>
+                    <div class="risk-box">
+                        <div class="risk-box-header">
+                            <h3>Risk Assessment</h3>
+                            <i id="riskIcon" class="fa-solid fa-circle-check"></i>
+                        </div>
 
-<div id="loading" class="hidden">
-<div class="loader"></div>
-<p>Running Forensic Analysis...</p>
-</div>
+                        <div id="riskBadge" class="risk-badge low">
+                            <span id="riskLevelText">Low</span>
+                            <span id="riskScoreText">Score: 0</span>
+                        </div>
+                    </div>
 
-</section>
+                    <div class="insights-box">
+                        <h3>Document Insights</h3>
+                        <div class="insight-grid">
+                            <div class="insight-item">
+                                <span class="insight-label">OCR Status</span>
+                                <strong id="ocrStatus">-</strong>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Text Length</span>
+                                <strong id="textLength">-</strong>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Tampering Score</span>
+                                <strong id="tamperingScore">-</strong>
+                            </div>
+                            <div class="insight-item">
+                                <span class="insight-label">Metadata Status</span>
+                                <strong id="metadataStatus">-</strong>
+                            </div>
+                        </div>
+                    </div>
 
+                    <div class="ocr-preview-box">
+                        <h3>OCR Preview</h3>
+                        <p id="ocrPreview">-</p>
+                    </div>
+                </div>
+            </section>
+        </main>
 
-<section id="results" class="hidden">
+        <footer class="footer">
+            <p>© AuthentiScan AI 2026 | E S Abhijith</p>
 
-<h2>Document Analysis</h2>
+            <div class="links">
+                <a href="mailto:abhijithsankar.66@gmail.com" aria-label="Email">
+                    <i class="fa-solid fa-envelope"></i>
+                </a>
+                <a href="https://github.com/Abhijith-ES" target="_blank" aria-label="GitHub">
+                    <i class="fa-brands fa-github"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/abhijith-e-s-943a7226a/" target="_blank" aria-label="LinkedIn">
+                    <i class="fa-brands fa-linkedin"></i>
+                </a>
+            </div>
+        </footer>
+    </div>
 
-<div class="image-grid">
-
-<div class="image-box">
-<label>Original Document</label>
-<img id="originalImage">
-</div>
-
-<div class="image-box">
-<label>ELA Forensic View</label>
-<img id="elaImage">
-</div>
-
-</div>
-
-
-<div class="risk-card">
-<h3>Risk Assessment</h3>
-<p id="riskScore"></p>
-</div>
-
-
-<div class="report-card">
-<h2>Fraud Analysis Report</h2>
-<div id="fraudReport"></div>
-</div>
-
-</section>
-
-</main>
-
-
-<footer>
-
-<p>© AuthentiScan AI 2026 | E S Abhijith </p>
-
-<div class="links">
-
-<a href="mailto:abhijithsankar.66@gmail.com">
-<i class="fa-solid fa-envelope"></i>
-</a>
-
-<a href="https://github.com/Abhijith-ES" target="_blank">
-<i class="fa-brands fa-github"></i>
-</a>
-
-<a href="https://www.linkedin.com/in/abhijith-e-s-943a7226a/" target="_blank">
-<i class="fa-brands fa-linkedin"></i>
-</a>
-
-</div>
-
-</footer>
-
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
