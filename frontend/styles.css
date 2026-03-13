@@ -1,0 +1,224 @@
+body {
+font-family: 'Segoe UI', sans-serif;
+background: #f5f7fb;
+margin: 0;
+color: #222;
+
+display: flex;
+flex-direction: column;
+min-height: 100vh;
+}
+
+/* MAIN CONTENT */
+
+main {
+flex: 1;
+}
+
+/* HERO */
+
+.hero {
+text-align: center;
+padding: 60px 20px 30px 20px;
+}
+
+.hero h1 {
+font-size: 42px;
+margin-bottom: 10px;
+}
+
+.tagline {
+font-size: 20px;
+color: #444;
+margin-bottom: 10px;
+}
+
+.subtext {
+max-width: 600px;
+margin: auto;
+color: #666;
+}
+
+/* UPLOAD CARD */
+
+.upload-card {
+margin: 40px auto;
+background: white;
+padding: 30px;
+width: 420px;
+border-radius: 12px;
+box-shadow: 0 6px 25px rgba(0,0,0,0.08);
+text-align: center;
+}
+
+button {
+padding: 12px 24px;
+border: none;
+background: #2563eb;
+color: white;
+font-size: 16px;
+border-radius: 8px;
+cursor: pointer;
+margin-top: 10px;
+}
+
+button:hover {
+background: #1e4ed8;
+}
+
+/* RESULTS */
+
+#results {
+margin-top: 40px;
+text-align: center;
+}
+
+.hidden {
+display: none;
+}
+
+/* IMAGE GRID */
+
+.image-grid {
+display: flex;
+justify-content: center;
+gap: 50px;
+margin-top: 30px;
+flex-wrap: wrap;
+}
+
+.image-box {
+background: white;
+padding: 15px;
+border-radius: 10px;
+box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.image-box img {
+width: 280px;
+border-radius: 6px;
+}
+
+.image-box label {
+display: block;
+margin-bottom: 10px;
+font-weight: 600;
+}
+
+/* RISK CARD */
+
+.risk-card {
+background: white;
+padding: 20px;
+margin: 40px auto;
+width: 300px;
+border-radius: 10px;
+box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+/* REPORT */
+
+.report-card {
+background: white;
+padding: 30px;
+max-width: 900px;
+margin: 30px auto;
+border-radius: 10px;
+text-align: left;
+box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+line-height: 1.6;
+}
+
+/* FOOTER */
+
+footer {
+background: #0a0a0a;
+color: white;
+text-align: center;
+padding: 25px;
+margin-top: 60px;
+}
+
+.links a {
+color: white;
+margin: 10px;
+font-size: 20px;
+text-decoration: none;
+display: inline-block;
+}
+
+/* LOADING SPINNER */
+
+.loader {
+border: 6px solid #f3f3f3;
+border-top: 6px solid #2563eb;
+border-radius: 50%;
+width: 40px;
+height: 40px;
+animation: spin 1s linear infinite;
+margin: 30px auto;
+}
+
+@keyframes spin {
+0% { transform: rotate(0deg); }
+100% { transform: rotate(360deg); }
+}
+
+.upload-area {
+
+border: 2px dashed #cbd5e1;
+border-radius: 12px;
+padding: 35px;
+margin: 20px 0;
+
+cursor: pointer;
+
+background: #fafafa;
+
+transition: 0.25s;
+}
+
+.upload-area:hover {
+background: #f1f5f9;
+border-color: #2563eb;
+}
+
+.upload-icon {
+font-size: 40px;
+color: #2563eb;
+margin-bottom: 10px;
+}
+
+.upload-main {
+font-weight: 600;
+margin: 5px;
+}
+
+.upload-sub {
+font-size: 14px;
+color: #777;
+}
+
+#fileName {
+margin-top: 10px;
+font-size: 14px;
+color: #333;
+}
+
+
+/* Risk colors */
+
+.low-risk{
+color:#16a34a;
+font-weight:600;
+}
+
+.medium-risk{
+color:#f59e0b;
+font-weight:600;
+}
+
+.high-risk{
+color:#dc2626;
+font-weight:600;
+}
