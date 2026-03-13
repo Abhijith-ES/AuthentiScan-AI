@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AuthentiScan AI</title>
+
+<link rel="stylesheet" href="styles.css">
+
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<main>
+
+<header class="hero">
+<h1>AuthentiScan AI</h1>
+
+<p class="tagline">
+AI-Powered Identity Document Forgery Detection
+</p>
+
+<p class="subtext">
+Upload an identity document and instantly analyze tampering,
+forensic signals and authenticity risk using AI-driven analysis.
+</p>
+</header>
+
+
+<section class="upload-card">
+
+<h3>Upload Identity Document</h3>
+
+<div class="upload-area" id="uploadArea">
+
+<i class="fa-solid fa-cloud-arrow-up upload-icon"></i>
+
+<p class="upload-main">Drag & Drop your document</p>
+
+<p class="upload-sub">or click to browse</p>
+
+<input type="file" id="fileInput" hidden>
+
+<p id="fileName"></p>
+
+</div>
+
+<button onclick="analyzeDocument()" id="analyzeBtn">
+Analyze Document
+</button>
+
+<div id="loading" class="hidden">
+<div class="loader"></div>
+<p>Running forensic analysis...</p>
+</div>
+
+</section>
+
+
+<section id="results" class="hidden">
+
+<h2>Document Analysis</h2>
+
+<div class="image-grid">
+
+<div class="image-box">
+<label>Original Document</label>
+<img id="originalImage">
+</div>
+
+<div class="image-box">
+<label>ELA Forensic View</label>
+<img id="elaImage">
+</div>
+
+</div>
+
+
+<div class="risk-card">
+<h3>Risk Assessment</h3>
+<p id="riskScore"></p>
+</div>
+
+
+<div class="report-card">
+<h3>Fraud Analysis Report</h3>
+<div id="fraudReport"></div>
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<p>© 2026 Abhijith Sankar</p>
+
+<div class="links">
+
+<a href="mailto:abhijithsankar.66@gmail.com">
+<i class="fa-solid fa-envelope"></i>
+</a>
+
+<a href="https://github.com/Abhijith-ES" target="_blank">
+<i class="fa-brands fa-github"></i>
+</a>
+
+<a href="https://www.linkedin.com/in/abhijith-e-s-943a7226a/" target="_blank">
+<i class="fa-brands fa-linkedin"></i>
+</a>
+
+</div>
+
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
